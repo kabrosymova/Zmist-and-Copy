@@ -1,0 +1,46 @@
+---
+description: Standards for the KPI scorecard web app
+alwaysApply: true
+---
+
+# Content Writer KPI Scorecard Standards
+
+- Keep the app as a single static page in `index.html` unless a refactor is explicitly requested.
+- Preserve existing UX sections (Quality, Engagement, Dashboard) and avoid removing user-entered fields.
+- Maintain localStorage compatibility; when changing schema, add a safe fallback path.
+- Reuse existing visual tokens in `:root` and match current design language for new UI blocks.
+- Prefer incremental, focused edits over broad rewrites.
+- Add diagnostics and scoring logic as pure helper functions; keep thresholds explicit and easy to adjust.
+
+## Design system
+
+Reference: `/design-reference/variant-screenshot.png`
+
+### Visual style
+- Clean minimal SaaS UI - white background, light grey sidebar (`#F8F8F8`)
+- One accent color for actions (blue `#2563EB`), neutral base everywhere else
+- No gradients, no heavy shadows, generous white space
+
+### Typography
+- Inter or system-ui throughout
+- 14px body, muted grey (`#6B7280`) for secondary text
+- Section labels: uppercase, 11px, letter-spacing for hierarchy
+
+### Components
+- Status badges: small rounded pills, soft background colors (green = published, grey = draft, amber = in review)
+- Tables: clean rows, subtle bottom borders only, no zebra striping
+- Sidebar nav: icon + label, active state = filled background pill
+- Buttons: primary solid blue, secondary ghost with border
+- Shadows max: `box-shadow 0 1px 3px rgba(0,0,0,0.08)`
+
+### Layout
+- Sidebar 180-200px fixed, content area fills rest
+- Page header: title + subtitle left, actions right
+- 24px consistent page padding
+- Tabs for filtering content views
+
+### Avoid
+- Rounded corners above 8px on containers
+- Pastel block backgrounds on app shell
+- Decorative elements that do not carry information
+

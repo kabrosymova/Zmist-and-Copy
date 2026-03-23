@@ -6,31 +6,31 @@
   <title>Content Writer KPI Scorecard</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
       /* Brand neutrals */
       --white: #ffffff;
-      --black: #000000;
-      --gray-light: #ededed;
-      --gray-mid: #dde3e8;
+      --black: #111827;
+      --gray-light: #f8f8f8;
+      --gray-mid: #e5e7eb;
 
-      --bg: var(--gray-light);
+      --bg: #f9fafb;
       --surface: var(--white);
-      --surface2: var(--gray-light);
-      --border: var(--gray-mid);
+      --surface2: #f9fafb;
+      --border: #e5e7eb;
       --text: var(--black);
-      --muted: rgba(0, 0, 0, 0.52);
+      --muted: #6b7280;
 
       /* Highlights */
-      --accent: #004e89;
-      --accent-dim: rgba(0, 78, 137, 0.14);
-      --good: #fcb703;
-      --warn: #d9a000;
-      --bad: #c53030;
+      --accent: #4f46e5;
+      --accent-dim: #eef2ff;
+      --good: #22c55e;
+      --warn: #d97706;
+      --bad: #ef4444;
 
-      --radius: 12px;
-      --font: "Lexend", system-ui, sans-serif;
+      --radius: 8px;
+      --font: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
     }
 
     * {
@@ -43,44 +43,52 @@
       font-family: var(--font);
       background: var(--bg);
       color: var(--text);
+      font-size: 14px;
       line-height: 1.5;
       -webkit-font-smoothing: antialiased;
     }
 
     .wrap {
-      max-width: 920px;
-      margin: 0 auto;
-      padding: 2rem 1.25rem 4rem;
+      max-width: none;
+      margin: 0;
+      padding: 24px;
     }
 
     .built-by {
-      margin: 0 0 1rem;
-      font-size: 0.8125rem;
-      font-weight: 500;
-      letter-spacing: 0.02em;
+      margin: 0 0 0.75rem;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0;
+      color: #111827;
+      padding: 4px 8px;
     }
 
     .built-by a {
-      color: var(--muted);
+      color: #111827;
       text-decoration: none;
       border-bottom: 1px solid transparent;
       transition: color 0.15s, border-color 0.15s;
     }
 
     .built-by a:hover {
-      color: var(--accent);
+      color: #4f46e5;
       border-bottom-color: var(--accent);
     }
 
     header {
-      margin-bottom: 2rem;
-      padding-bottom: 1.5rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
       border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-left: 224px;
     }
 
     header h1 {
       font-family: var(--font);
-      font-size: clamp(1.75rem, 4vw, 2.35rem);
+      font-size: 20px;
       font-weight: 600;
       margin: 0 0 0.5rem;
       letter-spacing: -0.02em;
@@ -88,42 +96,63 @@
 
     header p {
       margin: 0;
-      color: var(--muted);
-      font-size: 0.95rem;
+      color: #9ca3af;
+      font-size: 13px;
       max-width: 62ch;
     }
 
-    .tabs {
-      position: relative;
-      z-index: 30;
+    .header-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
-      margin-bottom: 1.5rem;
+    }
+
+    .tabs {
+      position: fixed;
+      top: 24px;
+      left: 0;
+      bottom: 0;
+      z-index: 30;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 0;
+      width: 200px;
+      background: #f9fafb;
+      border-right: 1px solid #e5e7eb;
+      padding: 20px 10px;
     }
 
     .tabs button {
       font-family: inherit;
-      font-size: 0.875rem;
-      font-weight: 500;
-      padding: 0.5rem 1rem;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: var(--surface);
+      font-size: 13px;
+      font-weight: 400;
+      padding: 8px 16px;
+      border-radius: 6px;
+      border: 1px solid transparent;
+      background: transparent;
       color: var(--muted);
       cursor: pointer;
       transition: background 0.15s, color 0.15s, border-color 0.15s;
+      text-align: left;
     }
 
     .tabs button:hover {
-      color: var(--text);
-      border-color: var(--gray-mid);
+      color: #6b7280;
+      border-color: transparent;
+      background: #f3f4f6;
     }
 
     .tabs button[aria-selected="true"] {
-      background: var(--accent-dim);
-      border-color: var(--accent);
-      color: var(--accent);
+      background: #eef2ff;
+      border-color: transparent;
+      color: #4f46e5;
+      font-weight: 500;
+      box-shadow: none;
+    }
+
+    .tabs button .tab-icon {
+      display: none;
     }
 
     section.panel {
@@ -135,6 +164,20 @@
       display: block;
     }
 
+    .app-layout {
+      margin-left: 224px;
+    }
+
+    @media (max-width: 879px) {
+      header {
+        margin-left: 0;
+      }
+
+      .app-layout {
+        margin-left: 0;
+      }
+    }
+
     @keyframes fade {
       from { opacity: 0; transform: translateY(4px); }
       to { opacity: 1; transform: translateY(0); }
@@ -144,8 +187,9 @@
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 1.25rem 1.5rem;
+      padding: 24px;
       margin-bottom: 1rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
     }
 
     .card h2 {
@@ -156,9 +200,19 @@
     }
 
     .card .hint {
-      font-size: 0.8rem;
+      font-size: 0.8125rem;
       color: var(--muted);
       margin: 0 0 1rem;
+    }
+
+    .section-label {
+      display: inline-block;
+      margin-bottom: 0.5rem;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #9ca3af;
+      font-weight: 500;
     }
 
     .dim {
@@ -207,17 +261,19 @@
     .pill {
       display: block;
       padding: 0.65rem 0.75rem;
-      border-radius: 8px;
+      border-radius: 6px;
       border: 1px solid var(--border);
-      background: var(--surface2);
-      font-size: 0.75rem;
+      background: #f9fafb;
+      font-size: 12px;
+      color: #6b7280;
       text-align: center;
       transition: border-color 0.15s, background 0.15s;
     }
 
     .pill strong {
       display: block;
-      font-size: 0.85rem;
+      font-size: 16px;
+      color: #111827;
       margin-bottom: 0.2rem;
     }
 
@@ -227,20 +283,14 @@
     }
 
     .scale input:checked + .pill {
-      border-color: var(--accent);
-      background: var(--accent-dim);
-      color: var(--text);
+      border: 1.5px solid #4f46e5;
+      background: #eef2ff;
+      color: #4f46e5;
+      font-weight: 600;
     }
 
     .score-banner {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      background: linear-gradient(180deg, var(--bg) 70%, transparent);
-      padding: 0.75rem 0 1rem;
-      margin: 0 -1.25rem;
-      padding-left: 1.25rem;
-      padding-right: 1.25rem;
+      margin-bottom: 1rem;
     }
 
     .score-inner {
@@ -249,7 +299,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
-      padding: 1rem 1.25rem;
+      padding: 0.9rem 1rem;
       border-radius: var(--radius);
       border: 1px solid var(--border);
       background: var(--surface);
@@ -264,28 +314,29 @@
     .score-big .num {
       font-family: var(--font);
       font-weight: 700;
-      font-size: 2.5rem;
+      font-size: 48px;
       line-height: 1;
       letter-spacing: -0.03em;
     }
 
     .score-big .max {
-      color: var(--muted);
-      font-size: 1rem;
+      color: #9ca3af;
+      font-size: 24px;
     }
 
     .verdict {
-      font-size: 0.95rem;
-      font-weight: 600;
-      padding: 0.35rem 0.75rem;
-      border-radius: 6px;
-      background: var(--surface2);
+      font-size: 12px;
+      font-weight: 500;
+      padding: 2px 10px;
+      border-radius: 999px;
+      background: #fef3c7;
+      color: #92400e;
     }
 
-    .verdict.excellent { color: var(--good); }
-    .verdict.solid { color: var(--accent); }
-    .verdict.rework { color: var(--warn); }
-    .verdict.scratch { color: var(--bad); }
+    .verdict.excellent { background: #dcfce7; color: #166534; }
+    .verdict.solid { background: #eef2ff; color: #3730a3; }
+    .verdict.rework { background: #fef3c7; color: #92400e; }
+    .verdict.scratch { background: #fee2e2; color: #991b1b; }
 
     .toolbar {
       display: flex;
@@ -296,18 +347,96 @@
 
     .toolbar button {
       font-family: inherit;
-      font-size: 0.8rem;
-      padding: 0.4rem 0.75rem;
+      font-size: 13px;
+      padding: 0.45rem 0.8rem;
       border-radius: 6px;
       border: 1px solid var(--border);
-      background: transparent;
-      color: var(--muted);
+      background: #ffffff;
+      color: #374151;
       cursor: pointer;
     }
 
     .toolbar button:hover {
-      color: var(--text);
-      border-color: var(--gray-mid);
+      color: #374151;
+      border-color: #e5e7eb;
+      background: #f9fafb;
+    }
+
+    .toolbar button.btn-primary {
+      background: #4f46e5;
+      color: #ffffff;
+      border-color: #4f46e5;
+    }
+
+    .toolbar button.btn-primary:hover {
+      background: #4338ca;
+      border-color: #4338ca;
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .status-badge.published {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .status-badge.review {
+      background: #ffedd5;
+      color: #9a3412;
+    }
+
+    .status-badge.draft {
+      background: #f3f4f6;
+      color: #4b5563;
+    }
+
+    .dashboard-table-wrap {
+      overflow-x: auto;
+    }
+
+    .dashboard-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8rem;
+    }
+
+    .dashboard-table th,
+    .dashboard-table td {
+      padding: 0.65rem 0.55rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+      text-align: left;
+    }
+
+    .dashboard-table th {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+    }
+
+    .dashboard-table td a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+    }
+
+    .dashboard-table td a:hover {
+      border-bottom-color: var(--accent);
+    }
+
+    .dashboard-empty {
+      margin: 0;
+      font-size: 0.85rem;
+      color: var(--muted);
     }
 
     .grid-2 {
@@ -323,7 +452,7 @@
 
     label.field {
       display: block;
-      font-size: 0.8rem;
+      font-size: 13px;
       font-weight: 500;
       color: var(--muted);
       margin-bottom: 0.35rem;
@@ -334,12 +463,26 @@
     textarea {
       width: 100%;
       font-family: inherit;
-      font-size: 0.9rem;
-      padding: 0.5rem 0.65rem;
-      border-radius: 8px;
+      font-size: 14px;
+      padding: 8px 12px;
+      border-radius: 6px;
       border: 1px solid var(--border);
-      background: var(--bg);
+      background: #ffffff;
       color: var(--text);
+    }
+
+    input[type="text"]::placeholder,
+    input[type="number"]::placeholder,
+    textarea::placeholder {
+      color: #9ca3af;
+    }
+
+    input[type="text"]:focus,
+    input[type="number"]:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #4f46e5;
+      box-shadow: 0 0 0 3px rgba(79,70,229,0.1);
     }
 
     textarea {
@@ -361,30 +504,59 @@
     }
 
     .ref-box {
-      font-size: 0.78rem;
-      color: var(--muted);
-      padding: 0.75rem;
+      font-size: 13px;
+      color: #374151;
+      padding: 12px;
       border-radius: 8px;
-      background: var(--bg);
-      border-left: 3px solid var(--accent);
+      background: #f5f3ff;
+      border-left: 3px solid #4f46e5;
       margin-top: 0.75rem;
     }
 
     .ref-box strong {
-      color: var(--text);
+      color: #4f46e5;
+      font-size: 13px;
+      font-weight: 600;
     }
 
     .ref-box .score-action {
       margin: 0.5rem 0 0;
-      font-size: 0.85rem;
-      color: var(--text);
+      font-size: 13px;
+      color: #374151;
       line-height: 1.55;
     }
 
+    .diagnostics-box {
+      margin-top: 0.9rem;
+      padding: 0.8rem 0.9rem;
+      border-left: 3px solid var(--accent);
+      border-radius: 8px;
+      background: var(--surface2);
+      font-size: 0.82rem;
+      color: var(--text);
+    }
+
+    .diagnostics-box strong {
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+
+    .diagnostics-box ul {
+      margin: 0;
+      padding-left: 1.1rem;
+    }
+
+    .diagnostics-box li {
+      margin: 0.2rem 0;
+      line-height: 1.45;
+    }
+
     footer.note {
-      margin-top: 2rem;
-      font-size: 0.75rem;
-      color: var(--muted);
+      margin-top: 32px;
+      font-size: 12px;
+      color: #9ca3af;
+      border-top: 1px solid #e5e7eb;
+      padding-top: 16px;
     }
 
     .toolbar button:disabled {
@@ -396,19 +568,28 @@
 </head>
 <body>
   <div class="wrap">
-    <p class="built-by">
-      <a href="https://www.zmistandcopy.com/" target="_blank" rel="noopener noreferrer">Built by Zmist &amp; Copy</a>
-    </p>
     <header>
-      <h1>Content Writer KPI Scorecard</h1>
-      <p>Two-layer system from the quality-first framework: pre-publish quality score (6 dimensions), post-publish engagement by channel, and quality-gated output volume. Data saves in this browser.</p>
+      <div>
+        <h1>Content Writer KPI Scorecard</h1>
+        <p>Score draft quality, track channel performance, and review monthly output in one place.</p>
+      </div>
+      <div class="toolbar header-actions">
+        <button type="button" id="resetQuality">Reset scores</button>
+        <button type="button" id="exportSnapshot">Copy summary</button>
+        <button type="button" class="btn-primary" id="downloadPdf">Download PDF</button>
+      </div>
     </header>
 
-    <div class="tabs" role="tablist" aria-label="KPI layers">
-      <button type="button" role="tab" id="tab-q" aria-selected="true" aria-controls="panel-q">1 · Quality score</button>
-      <button type="button" role="tab" id="tab-engagement" aria-selected="false" aria-controls="panel-engagement">2 · Engagement</button>
-      <button type="button" role="tab" id="tab-v" aria-selected="false" aria-controls="panel-v">3 · Output volume</button>
-    </div>
+    <div class="app-layout">
+      <div class="tabs" role="tablist" aria-label="KPI layers">
+        <p class="built-by">
+          <a href="https://www.zmistandcopy.com/" target="_blank" rel="noopener noreferrer">Built by Zmist &amp; Copy</a>
+        </p>
+        <button type="button" role="tab" id="tab-q" aria-selected="true" aria-controls="panel-q">Quality</button>
+        <button type="button" role="tab" id="tab-engagement" aria-selected="false" aria-controls="panel-engagement">Engagement</button>
+        <button type="button" role="tab" id="tab-dashboard" aria-selected="false" aria-controls="panel-dashboard">Dashboard</button>
+      </div>
+      <div class="panel-area">
 
     <!-- Layer 1: Quality -->
     <section id="panel-q" class="panel active" role="tabpanel" aria-labelledby="tab-q">
@@ -421,22 +602,27 @@
             </div>
             <div id="qualityVerdict" class="verdict solid" style="margin-top:0.5rem">Solid — minor revisions before publishing</div>
           </div>
-          <div class="toolbar">
-            <button type="button" id="resetQuality">Reset scores</button>
-            <button type="button" id="exportSnapshot">Copy summary</button>
-            <button type="button" id="downloadPdf">Download PDF</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="section-label">Draft metadata</span>
+        <h2>Article / piece</h2>
+        <p class="hint">Optional — track which draft you scored.</p>
+        <div class="grid-2">
+          <div>
+            <label class="field" for="pieceTitle">Draft title</label>
+            <input type="text" id="pieceTitle" placeholder="e.g. Q1 product launch deep-dive" autocomplete="off" />
+          </div>
+          <div>
+            <label class="field" for="pieceLink">Draft link (URL)</label>
+            <input type="text" id="pieceLink" placeholder="https://docs.google.com/... or CMS draft URL" autocomplete="off" />
           </div>
         </div>
       </div>
 
       <div class="card">
-        <h2>Article / piece</h2>
-        <p class="hint">Optional — track which draft you scored.</p>
-        <label class="field" for="pieceTitle">Title or URL</label>
-        <input type="text" id="pieceTitle" placeholder="e.g. Q1 product launch deep-dive" autocomplete="off" />
-      </div>
-
-      <div class="card">
+        <span class="section-label">Quality rubric</span>
         <h2>Pre-publish rubric</h2>
         <p class="hint">Rate each dimension 1, 3, or 5. Sum ranges 6–30. Gate example: <strong>23+</strong> to publish.</p>
 
@@ -452,6 +638,7 @@
     <!-- Layer 2: Engagement -->
     <section id="panel-engagement" class="panel" role="tabpanel" aria-labelledby="tab-engagement">
       <div class="card">
+        <span class="section-label">Channel metrics</span>
         <h2>Blog / long-form</h2>
         <p class="hint">GA4 and on-page behavior. Aim &gt;90s avg engagement time; &lt;53s often means the intro failed.</p>
         <div class="grid-2">
@@ -472,9 +659,14 @@
             <textarea id="blogNotes" placeholder="e.g. 80% stop at 40% scroll — fix middle third"></textarea>
           </div>
         </div>
+        <div class="diagnostics-box" id="blogDiagnostics" style="display:none">
+          <strong>Diagnostics</strong>
+          <ul id="blogDiagnosticsList"></ul>
+        </div>
       </div>
 
       <div class="card">
+        <span class="section-label">Channel metrics</span>
         <h2>LinkedIn</h2>
         <p class="hint">Track by format. Engagement rate &gt;3–4% is solid for &lt;10K followers. Weight comment quality over volume.</p>
         <div class="grid-2">
@@ -503,9 +695,14 @@
             <input type="number" id="liSaves" min="0" placeholder="e.g. 34" />
           </div>
         </div>
+        <div class="diagnostics-box" id="liDiagnostics" style="display:none">
+          <strong>Diagnostics</strong>
+          <ul id="liDiagnosticsList"></ul>
+        </div>
       </div>
 
       <div class="card">
+        <span class="section-label">Channel metrics</span>
         <h2>Newsletter</h2>
         <p class="hint">B2B: open rate 35–40%+ healthy. CTR shows if body earned the click; reply rate signals trust.</p>
         <div class="grid-2">
@@ -526,36 +723,68 @@
             <input type="text" id="nwUnsub" placeholder="Spike after a send?" />
           </div>
         </div>
+        <div class="diagnostics-box" id="nwDiagnostics" style="display:none">
+          <strong>Diagnostics</strong>
+          <ul id="nwDiagnosticsList"></ul>
+        </div>
       </div>
     </section>
 
-    <!-- Layer 3: Volume -->
-    <section id="panel-v" class="panel" role="tabpanel" aria-labelledby="tab-v">
+    <!-- Layer 3: Dashboard -->
+    <section id="panel-dashboard" class="panel" role="tabpanel" aria-labelledby="tab-dashboard">
       <div class="card">
-        <h2>Quality-gated output</h2>
-        <p class="hint">Count pieces that <strong>cleared the bar</strong> (e.g. 23+ pre-publish), not just published. Track proprietary elements and post-publish hold-up.</p>
+        <span class="section-label">Monthly review</span>
+        <h2>Monthly quality output review</h2>
+        <p class="hint">Run this review after checking all drafts for the month.</p>
         <div class="grid-2">
           <div>
-            <label class="field" for="volPeriod">Period</label>
-            <input type="text" id="volPeriod" placeholder="e.g. March 2025" />
+            <label class="field" for="volPeriod">Month / period</label>
+            <input type="text" id="volPeriod" placeholder="e.g. March 2026" />
           </div>
           <div>
-            <label class="field" for="volArticles">Articles cleared quality gate</label>
-            <input type="number" id="volArticles" min="0" step="1" placeholder="e.g. 5" />
+            <label class="field" for="volArticles">Drafts that passed quality bar</label>
+            <input type="number" id="volArticles" min="0" step="1" placeholder="e.g. 7" />
           </div>
           <div>
-            <label class="field" for="volProp">Pieces with proprietary elements</label>
-            <input type="number" id="volProp" min="0" step="1" placeholder="client story, data, framework…" />
+            <label class="field" for="volProp">Drafts with proprietary insight</label>
+            <input type="number" id="volProp" min="0" step="1" placeholder="e.g. 4" />
           </div>
           <div>
-            <label class="field" for="volEng">Pieces with strong engagement (1–4 wks)</label>
-            <input type="number" id="volEng" min="0" step="1" />
+            <label class="field" for="volEng">Drafts with strong engagement</label>
+            <input type="number" id="volEng" min="0" step="1" placeholder="e.g. 3" />
           </div>
         </div>
-        <label class="field" for="volNotes">Notes (AI assist, volume vs. engagement tradeoffs)</label>
-        <textarea id="volNotes" placeholder="If output rises and engagement falls, revisit what you're measuring."></textarea>
+        <label class="field" for="volNotes">Monthly notes</label>
+        <textarea id="volNotes" placeholder="What to improve next month based on this review."></textarea>
+      </div>
+      <div class="card">
+        <span class="section-label">Draft tracking</span>
+        <h2>Draft dashboard</h2>
+        <p class="hint">Saved automatically for drafts with a title or link. Each channel shows its own score; channels not used show N/A.</p>
+        <div class="dashboard-table-wrap">
+          <table class="dashboard-table" aria-label="Draft KPI dashboard">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Link</th>
+                <th>Status</th>
+                <th>Quality</th>
+                <th>Blog</th>
+                <th>LinkedIn</th>
+                <th>Newsletter</th>
+                <th>Total engagement</th>
+                <th>Action</th>
+                <th>Updated</th>
+              </tr>
+            </thead>
+            <tbody id="dashboardBody"></tbody>
+          </table>
+        </div>
+        <p class="dashboard-empty" id="dashboardEmpty">No scored drafts yet. Add a title or link and fill in your scorecard.</p>
       </div>
     </section>
+      </div>
+    </div>
 
     <footer class="note">
       Framework: pre-publish quality (why) + post-publish engagement (whether judgment was right). Originality: first-party data, named clients, proprietary frameworks, hard-won operational insights.
@@ -564,7 +793,7 @@
 
   <script>
     (function () {
-      const STORAGE_KEY = "content-writer-kpi-scorecard-v1";
+      const STORAGE_KEY = "content-writer-kpi-scorecard-v2";
 
       const dimensions = [
         {
@@ -692,6 +921,246 @@
         return "Do not publish. Re-outline from the business goal and ICP, then draft again. Salvaging sentences rarely fixes a score this low.";
       }
 
+      function clamp(v, min, max) {
+        return Math.max(min, Math.min(max, v));
+      }
+
+      function getNumeric(id) {
+        const raw = fieldVal(id);
+        const n = Number(raw);
+        return Number.isFinite(n) ? n : null;
+      }
+
+      function engagementByChannel() {
+        const byChannel = { blog: null, linkedin: null, newsletter: null };
+        const blogTime = getNumeric("blogTime");
+        const blogScroll = getNumeric("blogScroll");
+        const blogPages = getNumeric("blogPages");
+        const liEng = getNumeric("liEng");
+        const liSaves = getNumeric("liSaves");
+        const nwOpen = getNumeric("nwOpen");
+        const nwCtr = getNumeric("nwCtr");
+
+        const blogMetrics = [];
+        if (blogTime !== null) blogMetrics.push(clamp((blogTime / 120) * 100, 0, 100));
+        if (blogScroll !== null) blogMetrics.push(clamp(blogScroll, 0, 100));
+        if (blogPages !== null) blogMetrics.push(clamp((blogPages / 3.5) * 100, 0, 100));
+        if (blogMetrics.length) {
+          byChannel.blog = Math.round(blogMetrics.reduce((a, b) => a + b, 0) / blogMetrics.length);
+        }
+
+        const liMetrics = [];
+        if (liEng !== null) liMetrics.push(clamp((liEng / 6) * 100, 0, 100));
+        if (liSaves !== null) liMetrics.push(clamp((liSaves / 40) * 100, 0, 100));
+        if (liMetrics.length) {
+          byChannel.linkedin = Math.round(liMetrics.reduce((a, b) => a + b, 0) / liMetrics.length);
+        }
+
+        const nwMetrics = [];
+        if (nwOpen !== null) nwMetrics.push(clamp((nwOpen / 45) * 100, 0, 100));
+        if (nwCtr !== null) nwMetrics.push(clamp((nwCtr / 6) * 100, 0, 100));
+        if (nwMetrics.length) {
+          byChannel.newsletter = Math.round(nwMetrics.reduce((a, b) => a + b, 0) / nwMetrics.length);
+        }
+
+        return byChannel;
+      }
+
+      function totalEngagementScore(byChannel) {
+        const present = [byChannel.blog, byChannel.linkedin, byChannel.newsletter].filter((v) => v !== null);
+        if (!present.length) return null;
+        return Math.round(present.reduce((a, b) => a + b, 0) / present.length);
+      }
+
+      function draftActionForDraft(quality, engagementTotal) {
+        if (quality < 23) return "Rewrite core sections before publishing.";
+        if (engagementTotal === null) return "Publish after polish and start collecting channel data.";
+        if (quality >= 27 && engagementTotal >= 70) return "Publish now and repurpose to more channels.";
+        if (engagementTotal >= 50) return "Publish and optimize headline/CTA in the first week.";
+        return "Keep the quality, but rework hook and distribution plan.";
+      }
+
+      function statusForDraft(quality, engagementTotal) {
+        if (quality >= 27 && (engagementTotal === null || engagementTotal >= 60)) {
+          return { cls: "published", text: "Published" };
+        }
+        if (quality >= 23) {
+          return { cls: "review", text: "In review" };
+        }
+        return { cls: "draft", text: "Draft" };
+      }
+
+      function getEngagementRaw() {
+        const blogTimeSec = numericOrNull(document.getElementById("blogTime")?.value);
+        const blogScrollPct = numericOrNull(document.getElementById("blogScroll")?.value);
+        const blogPagesPerSession = numericOrNull(document.getElementById("blogPages")?.value);
+
+        const liImpressions = numericOrNull(document.getElementById("liReach")?.value);
+        const liEngRate = numericOrNull(document.getElementById("liEng")?.value);
+        const liSaves = numericOrNull(document.getElementById("liSaves")?.value);
+
+        const nwOpenRate = numericOrNull(document.getElementById("nwOpen")?.value);
+        const nwCtrRate = numericOrNull(document.getElementById("nwCtr")?.value);
+        const nwUnsubText = String(document.getElementById("nwUnsub")?.value || "").trim();
+
+        return {
+          blogTimeSec,
+          blogScrollPct,
+          blogPagesPerSession,
+          liImpressions,
+          liEngRate,
+          liSaves,
+          nwOpenRate,
+          nwCtrRate,
+          nwUnsubText,
+        };
+      }
+
+      function hasAnyEngagement(raw) {
+        return (
+          raw.blogTimeSec !== null ||
+          raw.blogScrollPct !== null ||
+          raw.blogPagesPerSession !== null ||
+          raw.liImpressions !== null ||
+          raw.liEngRate !== null ||
+          raw.liSaves !== null ||
+          raw.nwOpenRate !== null ||
+          raw.nwCtrRate !== null ||
+          raw.nwUnsubText.length > 0
+        );
+      }
+
+      function blogUsed(raw) {
+        return raw.blogTimeSec !== null || raw.blogScrollPct !== null || raw.blogPagesPerSession !== null;
+      }
+
+      function linkedinUsed(raw) {
+        return raw.liImpressions !== null || raw.liEngRate !== null || raw.liSaves !== null;
+      }
+
+      function newsletterUsed(raw) {
+        return raw.nwOpenRate !== null || raw.nwCtrRate !== null || raw.nwUnsubText.length > 0;
+      }
+
+      function blogDisplay(raw) {
+        if (!blogUsed(raw)) return "N/A";
+
+        if (raw.blogTimeSec !== null) {
+          const sec = Math.round(raw.blogTimeSec);
+          if (raw.blogTimeSec < 60) return `${sec}s (Intro fix)`;
+          if (raw.blogTimeSec <= 90) return `${sec}s (First H2)`;
+          return `${sec}s (On track)`;
+        }
+
+        if (raw.blogScrollPct !== null && raw.blogScrollPct < 50) return "Section rhythm";
+        if (raw.blogPagesPerSession !== null && raw.blogPagesPerSession < 1.5) return "Internal linking";
+        return "N/A";
+      }
+
+      function linkedinDisplay(raw) {
+        if (!linkedinUsed(raw)) return "N/A";
+
+        const reachText = raw.liImpressions !== null ? String(Math.round(raw.liImpressions)) : "";
+        const hook =
+          raw.liEngRate !== null && raw.liEngRate < 2 ? "Hook" : raw.liSaves === 0 ? "Actionable content" : "";
+        if (reachText && hook) return `${reachText} (${hook})`;
+        if (reachText) return reachText;
+        return hook || "N/A";
+      }
+
+      function newsletterDisplay(raw) {
+        if (!newsletterUsed(raw)) return "N/A";
+
+        const openText = raw.nwOpenRate !== null ? `${raw.nwOpenRate}%` : "";
+        const ctrText = raw.nwCtrRate !== null ? `${raw.nwCtrRate}%` : "";
+        const label =
+          raw.nwOpenRate !== null && raw.nwOpenRate < 30
+            ? "Subject line"
+            : raw.nwCtrRate !== null && raw.nwCtrRate < 2
+              ? "CTA placement"
+              : raw.nwUnsubText.length > 0
+                ? "Audience fit"
+                : "On track";
+
+        if (openText && ctrText) return `${openText} / ${ctrText} (${label})`;
+        if (openText) return `${openText} (${label})`;
+        if (ctrText) return `${ctrText} (${label})`;
+        return label;
+      }
+
+      function engagementTotalSignal(raw) {
+        if (!hasAnyEngagement(raw)) return null;
+
+        const usedCount = [blogUsed(raw), linkedinUsed(raw), newsletterUsed(raw)].filter(Boolean).length;
+        if (!usedCount) return null;
+
+        const blogPass =
+          blogUsed(raw) &&
+          raw.blogTimeSec !== null &&
+          raw.blogScrollPct !== null &&
+          raw.blogPagesPerSession !== null &&
+          raw.blogTimeSec >= 90 &&
+          raw.blogScrollPct >= 50 &&
+          raw.blogPagesPerSession >= 1.5;
+
+        const linkedinPass =
+          linkedinUsed(raw) &&
+          raw.liEngRate !== null &&
+          raw.liSaves !== null &&
+          raw.liEngRate >= 2 &&
+          raw.liSaves > 0;
+
+        const newsletterPass =
+          newsletterUsed(raw) &&
+          raw.nwOpenRate !== null &&
+          raw.nwCtrRate !== null &&
+          raw.nwOpenRate >= 30 &&
+          raw.nwCtrRate >= 2 &&
+          raw.nwUnsubText.length === 0;
+
+        const passingCount = [blogPass, linkedinPass, newsletterPass].filter(Boolean).length;
+        const label = passingCount === usedCount ? "Strong" : passingCount >= usedCount - 1 ? "Mixed" : "Needs work";
+        return { passingCount, usedCount, label };
+      }
+
+      function mostUrgentEngagementTip(raw) {
+        // Priority order: worst early funnel issues first, then channel-specific follow-through.
+        if (raw.blogTimeSec !== null && raw.blogTimeSec < 60) {
+          return "Fix intro — engagement time under 60s.";
+        }
+        if (raw.blogScrollPct !== null && raw.blogScrollPct < 50) {
+          return "Fix section rhythm — scroll depth drops under 50%.";
+        }
+        if (raw.blogPagesPerSession !== null && raw.blogPagesPerSession < 1.5) {
+          return "Improve internal linking — pages/session under 1.5.";
+        }
+        if (raw.blogTimeSec !== null && raw.blogTimeSec <= 90) {
+          return "Rework first H2 — engagement time 60–90s.";
+        }
+        if (raw.liEngRate !== null && raw.liEngRate < 2) {
+          return "Rewrite LinkedIn hook — engagement rate under 2%.";
+        }
+        if (raw.liSaves !== null && raw.liSaves === 0) {
+          return "Add actionable takeaway — saves are 0.";
+        }
+        if (raw.nwOpenRate !== null && raw.nwOpenRate < 30) {
+          return "Revise newsletter subject line — open rate under 30%.";
+        }
+        if (raw.nwCtrRate !== null && raw.nwCtrRate < 2) {
+          return "Move CTA earlier — CTR under 2%.";
+        }
+        if (raw.nwUnsubText.length > 0) {
+          return "Check audience fit — unsubscribe signal entered.";
+        }
+        return null;
+      }
+
+      function numericEngagementTotalForAction(raw) {
+        const signal = engagementTotalSignal(raw);
+        if (!signal) return null;
+        return Math.round((signal.passingCount / signal.usedCount) * 100);
+      }
+
       function updateQualityUI() {
         const total = qualityTotal();
         document.getElementById("qualityTotal").textContent = String(total);
@@ -713,6 +1182,7 @@
       function gatherState() {
         const ids = [
           "pieceTitle",
+          "pieceLink",
           "blogTime",
           "blogScroll",
           "blogPages",
@@ -754,6 +1224,7 @@
         }
         const ids = [
           "pieceTitle",
+          "pieceLink",
           "blogTime",
           "blogScroll",
           "blogPages",
@@ -781,26 +1252,249 @@
           }
         });
         updateQualityUI();
+        renderDashboard();
+      }
+
+      function getSavedRecords() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) return [];
+          const parsed = JSON.parse(raw);
+          if (Array.isArray(parsed.records)) return parsed.records;
+          return [];
+        } catch (e) {
+          return [];
+        }
+      }
+
+      function setSavedRecords(records, current) {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify({ records, current }));
+        } catch (e) {}
+      }
+
+      function normalizeUrl(link) {
+        const trimmed = String(link || "").trim();
+        if (!trimmed) return "";
+        if (/^https?:\/\//i.test(trimmed)) return trimmed;
+        return "https://" + trimmed;
+      }
+
+      function escapeHtml(str) {
+        return String(str)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#39;");
+      }
+
+      function numericOrNull(value) {
+        if (value === "" || value === null || value === undefined) return null;
+        const n = Number(value);
+        return Number.isFinite(n) ? n : null;
+      }
+
+      function renderDiagnosticsBox(boxId, listId, tips) {
+        const box = document.getElementById(boxId);
+        const list = document.getElementById(listId);
+        if (!box || !list) return;
+        if (!tips.length) {
+          box.style.display = "none";
+          list.innerHTML = "";
+          return;
+        }
+        box.style.display = "block";
+        list.innerHTML = tips.map((tip) => `<li>${escapeHtml(tip)}</li>`).join("");
+      }
+
+      function updateEngagementDiagnostics() {
+        const blogTips = [];
+        const blogTime = numericOrNull(document.getElementById("blogTime")?.value);
+        const blogScroll = numericOrNull(document.getElementById("blogScroll")?.value);
+        const blogPages = numericOrNull(document.getElementById("blogPages")?.value);
+        if (blogTime !== null && blogTime < 60) {
+          blogTips.push("Engagement time is under 60s. Fix the intro: cut the warm-up, lead with tension, and make the first three sentences immediately useful.");
+        }
+        if (blogTime !== null && blogTime >= 60 && blogTime <= 90) {
+          blogTips.push("Engagement time is 60–90s. Check your first H2 so it delivers on the intro instead of re-explaining it.");
+        }
+        if (blogScroll !== null && blogScroll < 50) {
+          blogTips.push("Scroll depth is below 50%. A section likely breaks rhythm - tighten dense or repetitive paragraphs and smooth transitions.");
+        }
+        if (blogPages !== null && blogPages < 1.5) {
+          blogTips.push("Pages/session is low. Move your best internal link above the fold and make the click feel like the natural next step.");
+        }
+        renderDiagnosticsBox("blogDiagnostics", "blogDiagnosticsList", blogTips);
+
+        const liTips = [];
+        const liEng = numericOrNull(document.getElementById("liEng")?.value);
+        const liSaves = numericOrNull(document.getElementById("liSaves")?.value);
+        if (liEng !== null && liEng < 2) {
+          liTips.push("Engagement rate is under 2%. Rewrite the hook with something specific: a number, counterintuitive claim, or one-line story.");
+        }
+        if (liSaves !== null && liSaves === 0) {
+          liTips.push("Saves are 0. Add an actionable takeaway (framework, checklist, or sequence) so the post is worth returning to.");
+        }
+        renderDiagnosticsBox("liDiagnostics", "liDiagnosticsList", liTips);
+
+        const nwTips = [];
+        const nwOpen = numericOrNull(document.getElementById("nwOpen")?.value);
+        const nwCtr = numericOrNull(document.getElementById("nwCtr")?.value);
+        const nwUnsub = String(document.getElementById("nwUnsub")?.value || "").trim();
+        if (nwOpen !== null && nwOpen < 30) {
+          nwTips.push("Open rate is below 30%. Refresh subject-line patterns and test send timing/frequency to reduce list fatigue.");
+        }
+        if (nwCtr !== null && nwCtr < 2) {
+          nwTips.push("CTR is below 2%. Move the CTA earlier and make the stakes of clicking explicit.");
+        }
+        if (nwUnsub.length > 0) {
+          nwTips.push("Unsubscribes were entered. Review issue-topic fit and tone - spikes often signal audience mismatch.");
+        }
+        renderDiagnosticsBox("nwDiagnostics", "nwDiagnosticsList", nwTips);
+      }
+
+      function upsertCurrentRecord() {
+        const state = gatherState();
+        const title = String(state.pieceTitle || "").trim();
+        const link = normalizeUrl(state.pieceLink || "");
+        if (!title && !link) return;
+
+        const quality = qualityTotal();
+        const raw = getEngagementRaw();
+        const engagementTotalScore = numericEngagementTotalForAction(raw);
+        const urgentTip = hasAnyEngagement(raw) ? mostUrgentEngagementTip(raw) : null;
+        const action = urgentTip ? urgentTip : draftActionForDraft(quality, engagementTotalScore);
+        const now = new Date().toISOString();
+
+        const records = getSavedRecords();
+
+        const titleKey = title.toLowerCase();
+        const linkKey = link;
+        const existingIdx = records.findIndex((r) => {
+          const rTitle = String(r.title || "").trim().toLowerCase();
+          const rLink = r.link || "";
+          const matchesTitle = rTitle && rTitle === titleKey;
+          const matchesLink = linkKey && rLink && rLink === linkKey;
+          const matchesLegacyKey = linkKey && String(r.key || "") === linkKey;
+          return matchesLink || matchesLegacyKey || matchesTitle;
+        });
+
+        const key = linkKey || titleKey;
+        const rec = {
+          key,
+          title: title || "(untitled draft)",
+          link,
+          quality,
+          blogTimeSec: raw.blogTimeSec,
+          blogScrollPct: raw.blogScrollPct,
+          blogPagesPerSession: raw.blogPagesPerSession,
+          liImpressions: raw.liImpressions,
+          liEngRate: raw.liEngRate,
+          liSaves: raw.liSaves,
+          nwOpenRate: raw.nwOpenRate,
+          nwCtrRate: raw.nwCtrRate,
+          nwUnsubText: raw.nwUnsubText,
+          engagementTotalPassingCount: engagementTotalSignal(raw)?.passingCount ?? null,
+          engagementTotalScore,
+          engagementTotalLabel: engagementTotalSignal(raw)?.label ?? null,
+          action,
+          updatedAt: now,
+        };
+        if (existingIdx >= 0) records[existingIdx] = rec;
+        else records.push(rec);
+        records.sort((a, b) => String(b.updatedAt).localeCompare(String(a.updatedAt)));
+        setSavedRecords(records, state);
+      }
+
+      function renderDashboard() {
+        const tbody = document.getElementById("dashboardBody");
+        const empty = document.getElementById("dashboardEmpty");
+        if (!tbody || !empty) return;
+
+        const records = getSavedRecords();
+        if (!records.length) {
+          tbody.innerHTML = "";
+          empty.style.display = "block";
+          return;
+        }
+
+        empty.style.display = "none";
+        tbody.innerHTML = records
+          .map((r) => {
+            const raw = {
+              blogTimeSec: r.blogTimeSec ?? null,
+              blogScrollPct: r.blogScrollPct ?? null,
+              blogPagesPerSession: r.blogPagesPerSession ?? null,
+              liImpressions: r.liImpressions ?? null,
+              liEngRate: r.liEngRate ?? null,
+              liSaves: r.liSaves ?? null,
+              nwOpenRate: r.nwOpenRate ?? null,
+              nwCtrRate: r.nwCtrRate ?? null,
+              nwUnsubText: r.nwUnsubText ?? "",
+            };
+
+            const blogText = blogDisplay(raw);
+            const liText = linkedinDisplay(raw);
+            const nwText = newsletterDisplay(raw);
+
+            const totalSignal = engagementTotalSignal(raw);
+            const engagementTotalText = totalSignal ? `${totalSignal.passingCount}/${totalSignal.usedCount} — ${totalSignal.label}` : "N/A";
+            const safeTitle = escapeHtml(r.title || "(untitled draft)");
+            const safeLink = escapeHtml(r.link || "");
+            const linkCell = safeLink ? `<a href="${safeLink}" target="_blank" rel="noopener noreferrer">Open draft</a>` : "—";
+            const updated = new Date(r.updatedAt).toLocaleString();
+            const status = statusForDraft(Number(r.quality) || 0, r.engagementTotalScore === undefined ? null : r.engagementTotalScore);
+            return `<tr>
+              <td>${safeTitle}</td>
+              <td>${linkCell}</td>
+              <td><span class="status-badge ${status.cls}">${status.text}</span></td>
+              <td>${r.quality}/30</td>
+              <td>${blogText}</td>
+              <td>${liText}</td>
+              <td>${nwText}</td>
+              <td>${engagementTotalText}</td>
+              <td>${r.action}</td>
+              <td>${updated}</td>
+            </tr>`;
+          })
+          .join("");
       }
 
       function save() {
-        try {
-          localStorage.setItem(STORAGE_KEY, JSON.stringify(gatherState()));
-        } catch (e) {}
+        upsertCurrentRecord();
+        renderDashboard();
+        updateEngagementDiagnostics();
       }
 
       function load() {
         try {
           const raw = localStorage.getItem(STORAGE_KEY);
-          if (raw) applyState(JSON.parse(raw));
-          else updateQualityUI();
+          if (!raw) {
+            updateQualityUI();
+            renderDashboard();
+            return;
+          }
+          const parsed = JSON.parse(raw);
+          if (parsed && parsed.current) {
+            applyState(parsed.current);
+            upsertCurrentRecord();
+          } else if (parsed && parsed.scores) {
+            // Legacy v1 fallback
+            applyState(parsed);
+            setSavedRecords([], parsed);
+          } else {
+            updateQualityUI();
+          }
         } catch (e) {
           updateQualityUI();
         }
+        renderDashboard();
+        updateEngagementDiagnostics();
       }
 
       const inputs = document.querySelectorAll(
-        "#pieceTitle, #blogTime, #blogScroll, #blogPages, #blogNotes, #liFormat, #liReach, #liEng, #liComments, #liProfile, #liSaves, #nwOpen, #nwCtr, #nwReply, #nwUnsub, #volPeriod, #volArticles, #volProp, #volEng, #volNotes"
+        "#pieceTitle, #pieceLink, #blogTime, #blogScroll, #blogPages, #blogNotes, #liFormat, #liReach, #liEng, #liComments, #liProfile, #liSaves, #nwOpen, #nwCtr, #nwReply, #nwUnsub, #volPeriod, #volArticles, #volProp, #volEng, #volNotes"
       );
       inputs.forEach((el) => {
         el.addEventListener("input", save);
@@ -972,19 +1666,19 @@
       // Tabs
       const tabQ = document.getElementById("tab-q");
       const tabEngagement = document.getElementById("tab-engagement");
-      const tabV = document.getElementById("tab-v");
+      const tabDashboard = document.getElementById("tab-dashboard");
       const panelQ = document.getElementById("panel-q");
       const panelEngagement = document.getElementById("panel-engagement");
-      const panelV = document.getElementById("panel-v");
+      const panelDashboard = document.getElementById("panel-dashboard");
 
       function activateTab(which) {
         const map = [
           { tab: tabQ, panel: panelQ },
           { tab: tabEngagement, panel: panelEngagement },
-          { tab: tabV, panel: panelV },
+          { tab: tabDashboard, panel: panelDashboard },
         ];
         map.forEach(({ tab, panel }, i) => {
-          const on = ["q", "engagement", "v"][i] === which;
+          const on = ["q", "engagement", "dashboard"][i] === which;
           tab.setAttribute("aria-selected", on ? "true" : "false");
           panel.classList.toggle("active", on);
         });
@@ -992,10 +1686,11 @@
 
       tabQ.addEventListener("click", () => activateTab("q"));
       tabEngagement.addEventListener("click", () => activateTab("engagement"));
-      tabV.addEventListener("click", () => activateTab("v"));
+      tabDashboard.addEventListener("click", () => activateTab("dashboard"));
 
       updateQualityUI();
       load();
+      updateEngagementDiagnostics();
     })();
   </script>
 </body>
